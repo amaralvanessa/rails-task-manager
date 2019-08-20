@@ -1,0 +1,9 @@
+<h2>List of tasks</h2>
+
+<% @tasks.each do |task| %>
+<p>
+  <%= task.title %> - <%=task.details%> <%= task.completed? ? "[x]" : "[ ]" %>
+</p>
+<% end %>
+
+
