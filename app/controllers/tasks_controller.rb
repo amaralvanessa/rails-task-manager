@@ -14,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(tasks_params)
+    @task = Task.new(create_task_params)
     @task.save
 
     redirect_to tasks_path
@@ -24,14 +24,24 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task.update(update_task_params)
+
+    redirect_to @task
   end
 
   def destroy
+    @task.destroy
+
+    redirect_to tasks_path
   end
 
   private
 
-  def task_params
+  def create_task_params
+    params.require(:task).permit(:title, :details)
+  end
+
+  def update_task_params
     params.require(:task).permit(:title, :details, :completed)
   end
 
